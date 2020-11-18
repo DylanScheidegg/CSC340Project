@@ -1,0 +1,21 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<!--Post Model-->
+@model Post
+@{
+    ViewBag.Title = "Delete Post";
+}
+
+<h2>Confirm Delete</h2>
+<!--Display basic info to confirm to the user-->
+<h3>@Model.UserPosted() - @Model.Data</h3>
+
+<!--Buttons to allow the user to either cancel or continue with the deletion-->
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="PostID" />
+
+    <button type="submit" class="btn btn-primary">Delete </button>
+    <a asp-controller="Post" asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

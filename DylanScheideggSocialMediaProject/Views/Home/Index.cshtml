@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Basic Data";
+}
+
+<!--List of User model-->
+@model List<User>
+
+<h2>User List</h2>
+
+<!--Basic table for the User-->
+<table class="table table-bordered table-striped table-hover">
+    <!--Data point headers-->
+    <thead>
+        <tr>
+            <th>User ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Number of Posts</th>
+            <th>Group Name</th>
+        </tr>
+    </thead>
+    <!--Data from database-->
+    <tbody>
+        <!--Loop through Model to get all data from database-->
+        @foreach (var usr in Model)
+        {
+            <tr>
+                <td>@usr.UserID</td>
+                <td>@usr.FName</td>
+                <td>@usr.LName</td>
+                <td>@usr.TotalPost()</td>
+                <td>@usr.GroupFind()</td>
+            </tr>
+        }
+    </tbody>
+</table>

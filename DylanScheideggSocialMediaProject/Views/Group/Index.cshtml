@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "All Groups";
+}
+
+<!--List of Group model-->
+@model List<Group>
+
+<h2>Group List</h2>
+
+<!--Add new Group-->
+<a asp-controller="Group" asp-action="Add">Add New Group</a>
+
+<!--All Information about Groups-->
+<table class="table table-bordered table-striped table-hover">
+    <!--Data point headers-->
+    <thead>
+        <tr>
+            <th>Group ID</th>
+            <th>Group Name</th>
+            <th>Leader</th>
+            <th>Creation Date</th>
+        </tr>
+    </thead>
+    <!--Data from database-->
+    <tbody>
+        <!--Loop through Model to get all data from database-->
+        @foreach (var gro in Model)
+        {
+            <tr>
+                <td>@gro.GroupID</td>
+                <td>@gro.Name</td>
+                <td>@gro.UserLeader()</td>
+                <td>@gro.CreationDate</td>
+                <td>
+                    <!--Edit and delete for the Group-->
+                    <a asp-controller="Group" asp-action="Edit" asp-route-id="@gro.GroupID" asp-route-slug="@gro.Slug"> Edit</a>
+                    <a asp-controller="Group" asp-action="Delete" asp-route-id="@gro.GroupID" asp-route-slug="@gro.Slug"> Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

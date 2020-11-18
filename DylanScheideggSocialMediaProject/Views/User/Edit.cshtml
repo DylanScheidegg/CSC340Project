@@ -1,0 +1,83 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<!--User model-->
+@model User
+@{
+    string title = ViewBag.Action + " User";
+    ViewBag.Title = title;
+}
+
+<h2>@ViewBag.Title</h2>
+
+<!--Data form for the user to fill out to build the new user-->
+<form asp-action="Edit" method="post">
+    <!--Error message-->
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <!--User first name-->
+    <div class="form-group row">
+        <label class="col-sm-2" asp-for="FName">First Name:</label>
+        <input asp-for="FName" class="form-control col-sm-8" />
+    </div>
+    <!--User last name-->
+    <div class="form-group row">
+        <label class="col-sm-2" asp-for="LName">Last Name:</label>
+        <input asp-for="LName" class="form-control col-sm-8" />
+    </div>
+    <!--User password-->
+    <div class="form-group row">
+        <label class="col-sm-2" asp-for="Password">Password: </label>
+        <input asp-for="Password" class="form-control col-sm-8" />
+    </div>
+    <!--User gender-->
+    <div class="form-group row">
+        <label class="col-sm-2" asp-for="Gender">Gender: </label>
+        <input asp-for="Gender" class="form-control col-sm-8" />
+    </div>
+    <!--Date of birth-->
+    <div class="form-group row">
+        <label class="col-sm-2" asp-for="DOB">Date of Birth:</label>
+        <input asp-for="DOB" class="form-control col-sm-8" />
+    </div>
+    <!--Address-->
+    <div class="form-group row">
+        <label class="col-sm-2" asp-for="Address">Address:</label>
+        <input asp-for="Address" class="form-control col-sm-8" />
+    </div>
+    <!--City-->
+    <div class="form-group row">
+        <label class="col-sm-2" asp-for="City">City:</label>
+        <input asp-for="City" class="form-control col-sm-8" />
+    </div>
+    <!--State-->
+    <div class="form-group row">
+        <label class="col-sm-2" asp-for="State">State:</label>
+        <input asp-for="State" class="form-control col-sm-8" />
+    </div>
+    <!--Zipcode-->
+    <div class="form-group row">
+        <label class="col-sm-2" asp-for="Zipcode">Zipcode: </label>
+        <input asp-for="Zipcode" class="form-control col-sm-8" />
+    </div>
+    <!--Country-->
+    <div class="form-group row">
+        <label class="col-sm-2" asp-for="Country">Country:</label>
+        <input asp-for="Country" class="form-control col-sm-8" />
+    </div>
+    <!--Drop down for the group they are in-->
+    <div class="form-group row">
+        <label class="col-sm-2" asp-for="UserGroupID">Group:</label>
+        <select asp-for="UserGroupID" class="form-control col-sm-8">
+            <option value="">Select a Group</option>
+            @foreach (DylanScheideggSocialMediaProject.Models.Group gp in ViewBag.uGroup)
+            {
+                <option value="@gp.GroupID">@gp.Name</option>
+            }
+        </select>
+    </div>
+    <!--Buttons to either cancel or confirm the changes/additions-->
+    <input type="hidden" asp-for="UserID" />
+    <button type="submit" class="btn btn-primary">@ViewBag.Action</button>
+    <a asp-controller="User" asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

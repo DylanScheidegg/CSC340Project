@@ -1,0 +1,43 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<!--Group model-->
+@model Group
+@{
+    string title = ViewBag.Action + " Group";
+    ViewBag.Title = title;
+}
+
+<h2>@ViewBag.Title</h2>
+
+<!--Data form for the user to fill out to build the new group-->
+<form asp-action="Edit" method="post">
+    <!--Error message-->
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <!--Group name-->
+    <div class="form-group row">
+        <label class="col-sm-2" asp-for="Name">Group Name:</label>
+        <input asp-for="Name" class="form-control col-sm-8" />
+    </div>
+    <!--Drop down for the user who created-->
+    <div class="form-group row">
+        <label class="col-sm-2" asp-for="LeaderID">User:</label>
+        <select asp-for="LeaderID" class="form-control col-sm-8">
+            <option value="">Select a User</option>
+            @foreach (DylanScheideggSocialMediaProject.Models.User usr in ViewBag.uUser)
+            {
+                <option value="@usr.UserID">@usr.FName @usr.LName</option>
+            }
+        </select>
+    </div>
+    <!--Date and time of creation-->
+    <div class="form-group row">
+        <label class="col-sm-2" asp-for="CreationDate">Group Name:</label>
+        <input asp-for="CreationDate" class="form-control col-sm-8" />
+    </div>
+    <!--Buttons to either cancel or confirm the changes/additions-->
+    <input type="hidden" asp-for="GroupID" />
+    <button type="submit" class="btn btn-primary">@ViewBag.Action</button>
+    <a asp-controller="Group" asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

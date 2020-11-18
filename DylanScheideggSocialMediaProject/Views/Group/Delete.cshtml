@@ -1,0 +1,21 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<!--Group Model-->
+@model Group
+@{
+    ViewBag.Title = "Delete Group";
+}
+
+<h2>Confirm Delete</h2>
+<!--Display basic info to confirm to the user-->
+<h3>@Model.Name - @Model.UserLeader()</h3>
+
+<!--Buttons to allow the user to either cancel or continue with the deletion-->
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="GroupID" />
+
+    <button type="submit" class="btn btn-primary">Delete </button>
+    <a asp-controller="Group" asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

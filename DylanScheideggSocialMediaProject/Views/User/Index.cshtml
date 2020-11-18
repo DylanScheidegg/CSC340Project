@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "All Users";
+}
+
+<!--List of User model-->
+@model List<User>
+
+<h2>User List</h2>
+
+<!--Add new User-->
+<a asp-controller="User" asp-action="Add">Add New User</a>
+
+<!--All Information about Users-->
+<table class="table table-bordered table-striped table-responsive table-hover">
+    <!--Data point headers-->
+    <thead>
+        <tr>
+            <th>User ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Password</th>
+            <th>Gender</th>
+            <th>DOB</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zipcode</th>
+            <th>Country</th>
+        </tr>
+    </thead>
+    <!--Data from database-->
+    <tbody>
+        <!--Loop through Model to get all data from database-->
+        @foreach (var usr in Model)
+        {
+            <tr>
+                <td>@usr.UserID</td>
+                <td>@usr.FName</td>
+                <td>@usr.LName</td>
+                <td>@usr.Password</td>
+                <td>@usr.Gender</td>
+                <td>@usr.DOB</td>
+                <td>@usr.Address</td>
+                <td>@usr.City</td>
+                <td>@usr.State</td>
+                <td>@usr.Zipcode</td>
+                <td>@usr.Country</td>
+                <td>
+                    <!--Edit and delete for the User-->
+                    <a asp-controller="User" asp-action="Edit" asp-route-id="@usr.UserID" asp-route-slug="@usr.Slug"> Edit</a>
+                    <a asp-controller="User" asp-action="Delete" asp-route-id="@usr.UserID" asp-route-slug="@usr.Slug"> Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

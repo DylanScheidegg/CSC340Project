@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "All Posts";
+}
+
+<!--List of Post model-->
+@model List<Post>
+
+<h2>Post List</h2>
+
+<!--Add new Post-->
+<a asp-controller="Post" asp-action="Add">Add New Post</a>
+
+<!--All Information about Posts-->
+<table class="table table-bordered table-striped table-responsive table-hover">
+    <!--Data point headers-->
+    <thead>
+        <tr>
+            <th>Post ID</th>
+            <th>User</th>
+            <th>Post</th>
+            <th>Image</th>
+            <th>Time Posted</th>
+        </tr>
+    </thead>
+    <!--Data from database-->
+    <tbody>
+        <!--Loop through Model to get all data from database-->
+        @foreach (var pst in Model)
+        {
+            <tr>
+                <td>@pst.PostID</td>
+                <td>@pst.UserPosted()</td>
+                <td>@pst.Data</td>
+                <td>
+                    @if (@pst.Image != "") {
+                        <img width="100" height="100" src="@pst.Image" alt="@pst.Image"
+                             title="@pst.Image" />
+                    }
+                </td>
+                <td>@pst.PostTime</td>
+                <td>
+                    <!--Edit and delete for the Post-->
+                    <a asp-controller="Post" asp-action="Edit" asp-route-id="@pst.PostID" asp-route-slug="@pst.Slug"> Edit</a>
+                    <a asp-controller="Post" asp-action="Delete" asp-route-id="@pst.PostID" asp-route-slug="@pst.Slug"> Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
