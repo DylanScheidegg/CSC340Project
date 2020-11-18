@@ -1,0 +1,17 @@
+new
+--qlException: The DELETE statement conflicted with the REFERENCE constraint "FK_Users_Groups_UserGroupID". The conflict occurred in database "ProjectTest1", table "dbo.Users", column 'UserGroupID'.
+The statement has been terminated.
+
+ONLY DELETE BREAKS IT when the user has a active group in the database
+Just got rid of delete in general
+
+USER CONTEXT user has a group id which breaks the program when deleting need a way to null the user group
+
+WORK AROUND
+	-- DELETE THE GROUP FROM THE USER BEFORE DELETING THE GROUP
+
+
+
+TO DO
+-- CSS
+-- Group fix work around
