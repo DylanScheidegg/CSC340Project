@@ -43,7 +43,7 @@ namespace DylanScheideggSocialMediaProject.Models
         }
 
         // Post slug for the URL
-        public string Slug => UserPosted()?.ToLower();
+        //public string Slug => UserPosted()?.ToLower();
 
     }
 }
